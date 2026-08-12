@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="ro" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Înscriere webinar — Barça Talks</title>
+<meta name="description" content="Formular de înscriere la webinarul Barça Talks. Locuri limitate, confirmare instant.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@600;700&family=Public+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --blau:#004D98;
+  --grana:#A50044;
+  --gold:#EDBB00;
+
+  --bg:#E9EDF4;
+  --bg-deep:#DDE3EE;
+  --surface:#FFFFFF;
+  --surface-2:#F5F7FB;
+  --ink:#0B1B33;
+  --ink-soft:#51617A;
+  --line:#CFD8E5;
+
+  --btn-ink:#FFFFFF;
+  --accent-text:var(--blau);
+  --danger:#B00020;
+  --ok:#0F6B3F;
+  --focus:#004D98;
+
+  --shadow: 0 1px 0 rgba(11,27,51,.04), 0 10px 30px -12px rgba(11,27,51,.28);
+
+  --r-lg:14px;
+  --r-md:10px;
+  --r-sm:6px;
+
+  --font-display:"Archivo Black","Arial Black",system-ui,sans-serif;
+  --font-cond:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --font-body:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+}
+
+html[data-theme="dark"]{
+  --bg:#070F1C;
+  --bg-deep:#050B15;
+  --surface:#0E1B2E;
+  --surface-2:#132340;
+  --ink:#E8EEF8;
+  --ink-soft:#9DAFC7;
+  --line:#22344F;
+
+  --accent-text:var(--gold);
+  --danger:#FF8FA0;
+  --ok:#5FD39B;
+  --focus:#EDBB00;
+
+  --shadow: 0 1px 0 rgba(0,0,0,.4), 0 18px 40px -18px rgba(0,0,0,.75);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{-webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 600px at 100% -10%, color-mix(in srgb, var(--blau) 14%, transparent), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, color-mix(in srgb, var(--grana) 12%, transparent), transparent 60%),
+    var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.55;
+  min-height:100vh;
+}
+
+/* ============================================================
+   SHELL
+   ============================================================ */
+.shell{
+  width:100%;
+  max-width:64rem;
+  margin-inline:auto;
+  padding:clamp(1rem,3vw,2.5rem) clamp(1rem,4vw,2rem) 4rem;
+}
+
+.skip{
+  position:absolute;
+  left:-9999px;
+  top:0;
+  background:var(--grana);
+  color:#fff;
+  padding:.7rem 1rem;
+  border-radius:0 0 var(--r-sm) 0;
+  z-index:50;
+  font-weight:700;
+}
+.skip:focus{left:0}
+
+/* ============================================================
+   SIGNATURE: banda blaugrana
+   ============================================================ */
+.stripes{
+  background-image:repeating-linear-gradient(
+    90deg,
+    var(--grana) 0 12px,
+    var(--blau) 12px 24px
+  );
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.masthead{
+  position:relative;
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  background:var(--surface);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.masthead__band{
+  height:10px;
+  transform-origin:left center;
+  animation:wipe .7s cubic-bezier(.2,.8,.2,1) both;
+}
+.masthead__body{
+  display:grid;
+  gap:1rem;
+  grid-template-columns:1fr auto;
+  align-items:start;
+  padding:clamp(1.1rem,3.5vw,2rem);
+}
+.eyebrow{
+  margin:0;
+  font-family:var(--font-cond);
+  font-size:1rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent-text);
+  font-weight:700;
+}
+.masthead h1{
+  font-family:var(--font-display);
+  font-weight:400;
+  letter-spacing:-.02em;
+  line-height:.95;
+  margin:.35rem 0 .6rem;
+  font-size:clamp(1.9rem,7vw,3.4rem);
+  text-wrap:balance;
+}
+.masthead h1 em{
+  font-style:normal;
+  color:var(--grana);
+}
+html[data-theme="dark"] .masthead h1 em{color:var(--gold)}
+
+.lede{
+  margin:0 0 1.1rem;
+  max-width:44ch;
+  color:var(--ink-soft);
+}
+.facts{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.4rem .5rem;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.facts li{
+  font-family:var(--font-mono);
+  font-size:.78rem;
+  letter-spacing:.02em;
+  border:1px solid var(--line);
+  background:var(--surface-2);
+  color:var(--ink-soft);
+  padding:.3rem .55rem;
+  border-radius:999px;
+  white-space:nowrap;
+}
+
+/* comutator temă */
+.theme-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:44px;
+  padding:.55rem .9rem;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:var(--surface-2);
+  color:var(--ink);
+  font:inherit;
+  font-weight:600;
+  font-size:.9rem;
+  cursor:pointer;
+  transition:background .18s ease, border-color .18s ease, transform .18s ease;
+}
+.theme-toggle:hover{border-color:var(--blau)}
+.theme-toggle:active{transform:translateY(1px)}
+.theme-toggle__icon{font-size:1rem;line-height:1}
+
+/* ============================================================
+   BILET / FORMULAR
+   ============================================================ */
+.ticket{
+  position:relative;
+  margin-top:clamp(1.25rem,3vw,2rem);
+  display:grid;
+  grid-template-columns:56px 1fr;
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  background:var(--surface);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.ticket__spine{
+  position:relative;
+}
+.ticket__spine span{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-family:var(--font-cond);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.34em;
+  font-size:.8rem;
+  color:#fff;
+  text-shadow:0 1px 2px rgba(0,0,0,.45);
+}
+.ticket__main{
+  padding:clamp(1.1rem,3.5vw,2rem);
+  min-width:0;
+}
+.ticket h2{
+  font-family:var(--font-cond);
+  font-size:clamp(1.35rem,4vw,1.7rem);
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  margin:0 0 .25rem;
+}
+.section-note{
+  margin:0 0 1.5rem;
+  color:var(--ink-soft);
+  font-size:.95rem;
+}
+
+.grid{
+  display:grid;
+  gap:1.1rem 1.25rem;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+.grid--full > *{grid-column:1 / -1}
+@media (max-width:640px){
+  .grid{grid-template-columns:1fr}
+}
+
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{
+  font-family:var(--font-cond);
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:.85rem;
+  color:var(--accent-text);
+  font-weight:700;
+  padding:0;
+  margin-bottom:.9rem;
+}
+
+.field{display:flex;flex-direction:column;gap:.35rem;min-width:0}
+.field > label{
+  font-weight:700;
+  font-size:.92rem;
+  letter-spacing:.01em;
+}
+.field .req{color:var(--grana);font-weight:700}
+html[data-theme="dark"] .field .req{color:var(--gold)}
+
+.field input{
+  width:100%;
+  min-height:48px;
+  padding:.7rem .85rem;
+  font:inherit;
+  font-size:1rem;
+  color:var(--ink);
+  background:var(--surface-2);
+  border:1.5px solid var(--line);
+  border-radius:var(--r-md);
+  transition:border-color .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.field input::placeholder{color:color-mix(in srgb, var(--ink-soft) 70%, transparent)}
+.field input:hover{border-color:color-mix(in srgb, var(--blau) 55%, var(--line))}
+.field input:focus{
+  outline:none;
+  border-color:var(--focus);
+  box-shadow:0 0 0 4px color-mix(in srgb, var(--focus) 26%, transparent);
+  background:var(--surface);
+}
+.field input[aria-invalid="true"]{
+  border-color:var(--danger);
+  box-shadow:0 0 0 4px color-mix(in srgb, var(--danger) 20%, transparent);
+}
+.field input[readonly]{
+  background:color-mix(in srgb, var(--ink-soft) 10%, var(--surface));
+  cursor:default;
+}
+
+.hint{
+  margin:0;
+  font-size:.82rem;
+  color:var(--ink-soft);
+}
+.error{
+  margin:0;
+  font-size:.85rem;
+  font-weight:600;
+  color:var(--danger);
+  display:flex;
+  gap:.35rem;
+  align-items:flex-start;
+}
+.error::before{content:"!";font-family:var(--font-mono);font-weight:600}
+
+/* linie perforată */
+.perf{
+  position:relative;
+  margin:1.75rem 0 1.4rem;
+  border-top:2px dashed var(--line);
+}
+.perf::before,
+.perf::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  background:var(--bg);
+  border:1px solid var(--line);
+  transform:translateY(-50%);
+}
+.perf::before{left:-30px}
+.perf::after{right:-30px}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem;
+  align-items:center;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5rem;
+  min-height:48px;
+  padding:.75rem 1.35rem;
+  border-radius:var(--r-md);
+  border:1.5px solid transparent;
+  font:inherit;
+  font-weight:700;
+  letter-spacing:.01em;
+  cursor:pointer;
+  transition:transform .15s ease, background .18s ease, border-color .18s ease, color .18s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn--primary{
+  background:var(--grana);
+  color:var(--btn-ink);
+  box-shadow:inset 0 -3px 0 rgba(0,0,0,.22);
+}
+.btn--primary:hover{background:color-mix(in srgb, var(--grana) 85%, #000)}
+.btn--ghost{
+  background:transparent;
+  color:var(--ink);
+  border-color:var(--line);
+}
+.btn--ghost:hover{border-color:var(--blau);color:var(--accent-text)}
+.btn--danger{
+  background:transparent;
+  color:var(--danger);
+  border-color:color-mix(in srgb, var(--danger) 45%, transparent);
+}
+.btn--danger:hover{background:color-mix(in srgb, var(--danger) 12%, transparent)}
+.btn--tiny{
+  min-height:36px;
+  padding:.35rem .7rem;
+  font-size:.82rem;
+  border-radius:var(--r-sm);
+}
+@media (max-width:480px){
+  .actions .btn{width:100%}
+}
+
+/* focus vizibil, uniform */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible{
+  outline:3px solid var(--focus);
+  outline-offset:2px;
+  border-radius:var(--r-sm);
+}
+
+/* ============================================================
+   SUMAR ERORI + STARE
+   ============================================================ */
+.summary{
+  margin:0 0 1.4rem;
+  padding:1rem 1.1rem;
+  border-radius:var(--r-md);
+  border:1.5px solid color-mix(in srgb, var(--danger) 50%, transparent);
+  background:color-mix(in srgb, var(--danger) 10%, var(--surface));
+}
+.summary h3{
+  margin:0 0 .4rem;
+  font-size:1rem;
+  font-family:var(--font-body);
+}
+.summary ul{margin:0;padding-left:1.2rem}
+.summary a{color:var(--ink);text-decoration-thickness:2px;text-underline-offset:2px}
+
+.notice{
+  margin-top:1.25rem;
+  padding:.85rem 1rem;
+  border-radius:var(--r-md);
+  border:1px dashed var(--line);
+  background:var(--surface);
+  color:var(--ink-soft);
+  font-size:.88rem;
+}
+
+/* ============================================================
+   LEGITIMAȚIA (confirmare)
+   ============================================================ */
+.pass{
+  margin-top:clamp(1.25rem,3vw,2rem);
+  display:grid;
+  grid-template-columns:14px 1fr;
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--blau) 12%, var(--surface)), var(--surface));
+  box-shadow:var(--shadow);
+  animation:rise .45s cubic-bezier(.2,.8,.2,1) both;
+}
+.pass__body{padding:clamp(1.1rem,3.5vw,1.9rem)}
+.pass__kicker{
+  font-family:var(--font-cond);
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  font-size:.82rem;
+  font-weight:700;
+  color:var(--ok);
+  margin:0 0 .3rem;
+}
+.pass__name{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(1.5rem,5vw,2.2rem);
+  line-height:1;
+  margin:0 0 .9rem;
+}
+.pass__meta{
+  display:grid;
+  gap:.6rem 1.5rem;
+  grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));
+  margin:0 0 1.2rem;
+}
+.pass__meta div{min-width:0}
+.pass__meta dt{
+  font-family:var(--font-cond);
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:.72rem;
+  color:var(--ink-soft);
+  font-weight:700;
+}
+.pass__meta dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+.pass__code{font-family:var(--font-mono);color:var(--accent-text)}
+
+/* ============================================================
+   STARE
+   ============================================================ */
+.status{
+  margin-top:1rem;
+  font-size:.9rem;
+  font-weight:600;
+  color:var(--ok);
+  min-height:1.4em;
+}
+
+footer{
+  margin-top:2.5rem;
+  text-align:center;
+  color:var(--ink-soft);
+  font-size:.82rem;
+}
+footer p{margin:.4rem 0}
+
+.link{
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+  min-height:44px;
+  font-weight:700;
+  color:var(--accent-text);
+  text-decoration-thickness:2px;
+  text-underline-offset:3px;
+}
+.link:hover{color:var(--grana)}
+html[data-theme="dark"] .link:hover{color:var(--gold)}
+
+.sr-only{
+  position:absolute;
+  width:1px;height:1px;
+  padding:0;margin:-1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* ============================================================
+   MOTION
+   ============================================================ */
+@keyframes wipe{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+@media print{
+  body{background:#fff}
+  .ticket,.theme-toggle,.skip{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#formular">Sari la formular</a>
+
+<div class="shell">
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="masthead">
+    <div class="masthead__band stripes" aria-hidden="true"></div>
+    <div class="masthead__body">
+      <div>
+        <p class="eyebrow">Barça Talks · Ediția 4</p>
+        <h1>Înscriere la webinar:<br><em>Analiza datelor în sport</em></h1>
+        <p class="lede">O oră cu analistul de performanță al academiei, despre cum se transformă datele din teren în decizii de antrenament. Locurile sunt limitate, iar confirmarea vine imediat.</p>
+        <ul class="facts">
+          <li>Joi, 24 septembrie 2026</li>
+          <li>18:00 — 19:00 (EEST)</li>
+          <li>Online, în română</li>
+          <li>120 de locuri</li>
+        </ul>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+        <span class="theme-toggle__icon" id="theme-icon" aria-hidden="true">☾</span>
+        <span id="theme-label">Mod întunecat</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== FORMULAR ===================== -->
+  <main>
+  <section class="ticket" id="formular" aria-labelledby="form-title">
+    <div class="ticket__spine stripes"><span>Barça Talks</span></div>
+    <div class="ticket__main">
+      <h2 id="form-title">Rezervă-ți locul</h2>
+      <p class="section-note">Toate câmpurile sunt obligatorii. Pe pagina publică apar doar prenumele, inițiala numelui, orașul și compania — emailul și data nașterii rămân la organizatori.</p>
+
+      <div id="error-summary" hidden></div>
+
+      <form id="form" novalidate>
+        <fieldset>
+          <legend>Participant</legend>
+          <div class="grid">
+
+            <div class="field">
+              <label for="nume">Nume și prenume <span class="req" aria-hidden="true">*</span></label>
+              <input id="nume" name="nume" type="text" autocomplete="name" required
+                     placeholder="Ioana Popescu"
+                     aria-describedby="nume-hint nume-error">
+              <p class="hint" id="nume-hint">Așa va apărea pe legitimația de acces.</p>
+              <p class="error" id="nume-error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required
+                     spellcheck="false" placeholder="ioana@companie.ro"
+                     aria-describedby="email-hint email-error">
+              <p class="hint" id="email-hint">Aici trimitem linkul de acces, cu 24 de ore înainte.</p>
+              <p class="error" id="email-error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="companie">Companie <span class="req" aria-hidden="true">*</span></label>
+              <input id="companie" name="companie" type="text" autocomplete="organization" required
+                     placeholder="Clubul Sportiv Municipal"
+                     aria-describedby="companie-error">
+              <p class="error" id="companie-error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="oras">Oraș <span class="req" aria-hidden="true">*</span></label>
+              <input id="oras" name="oras" type="text" autocomplete="address-level2" required
+                     placeholder="Cluj-Napoca"
+                     aria-describedby="oras-error">
+              <p class="error" id="oras-error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="data-nasterii">Data nașterii <span class="req" aria-hidden="true">*</span></label>
+              <input id="data-nasterii" name="dataNasterii" type="date" autocomplete="bday" required
+                     min="1920-01-01"
+                     aria-describedby="data-hint data-nasterii-error">
+              <p class="hint" id="data-hint">Format zi/lună/an. Înscrierea e deschisă de la 16 ani.</p>
+              <p class="error" id="data-nasterii-error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="varsta">Vârsta <span class="req" aria-hidden="true">*</span></label>
+              <input id="varsta" name="varsta" type="number" inputmode="numeric" required
+                     min="16" max="100" step="1" placeholder="34"
+                     aria-describedby="varsta-hint varsta-error">
+              <p class="hint" id="varsta-hint">Se completează singură din data nașterii. O poți corecta.</p>
+              <p class="error" id="varsta-error" hidden></p>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <div class="perf" aria-hidden="true"></div>
+
+        <div class="actions">
+          <button class="btn btn--primary" type="submit" id="submit">Confirmă locul</button>
+          <button class="btn btn--ghost" type="reset" id="reset">Golește formularul</button>
+        </div>
+      </form>
+
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+      <p class="notice" id="storage-notice" hidden></p>
+    </div>
+  </section>
+
+  <!-- ===================== CONFIRMARE ===================== -->
+  <section id="pass-slot" aria-live="polite"></section>
+
+  </main>
+
+  <footer>
+    <p><a class="link" href="rezultate.html">Vezi câți s-au înscris <span aria-hidden="true">→</span></a></p>
+    <p>Barça Talks e un webinar demonstrativ. Culorile blaugrana sunt un omagiu, nu o afiliere oficială.</p>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ----------------------------------------------------------------------------
+   Conectare Supabase. Cheia publishable e făcută să stea în cod client: ajunge
+   oricum în browserul fiecărui vizitator, iar tot ce poate face e limitat de
+   politicile din supabase.sql. Cheia "secret" / "service_role" și parola din
+   connection string NU au ce căuta aici, niciodată.
+   -------------------------------------------------------------------------- */
+window.APP_CONFIG = {
+  SUPABASE_URL: "https://zvwuwpljqebuyoyvdziw.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_ZnqGV8Hs0LH_32EY5KJDIw_BvAGxCD2",
+  LOCURI: 120
+};
+
+window.CONFIG_OK = !!(window.supabase && typeof window.supabase.createClient === "function");
+
+window.db = window.CONFIG_OK
+  ? window.supabase.createClient(
+      window.APP_CONFIG.SUPABASE_URL,
+      window.APP_CONFIG.SUPABASE_ANON_KEY,
+      { auth: { persistSession: false } }
+    )
+  : null;
+
+window.MESAJ_CONFIG = "Biblioteca supabase-js nu s-a putut încărca de pe CDN, deci pagina nu poate ajunge la baza de date. Verifică conexiunea sau un blocant de reclame.";
+
+window.mesajEroare = function (error) {
+  if (!error) { return "A apărut o eroare necunoscută."; }
+  if (error.message && /Failed to fetch|NetworkError|load failed/i.test(error.message)) {
+    return "Nu am putut ajunge la baza de date. Verifică conexiunea la internet și dacă proiectul Supabase e activ.";
+  }
+  if (error.code === "42883" || (error.message || "").indexOf("does not exist") !== -1) {
+    return "Funcțiile din baza de date lipsesc. Rulează supabase.sql în SQL Editor.";
+  }
+  return error.message || "Baza de date a refuzat operațiunea.";
+};
+</script>
+<script>
+(function () {
+  "use strict";
+
+  /* ---------------------------------------------------------
+     1. Preferința de temă — singurul lucru rămas în localStorage
+     --------------------------------------------------------- */
+  var THEME_KEY = "barca-talks:tema:v1";
+
+  var prefs = (function () {
+    var ok = false;
+    try {
+      window.localStorage.setItem("__probe__", "1");
+      window.localStorage.removeItem("__probe__");
+      ok = true;
+    } catch (e) { ok = false; }
+    var memory = {};
+    return {
+      get: function (k) {
+        try { return ok ? window.localStorage.getItem(k) : (k in memory ? memory[k] : null); }
+        catch (e) { return null; }
+      },
+      set: function (k, v) {
+        try { if (ok) { window.localStorage.setItem(k, v); } else { memory[k] = v; } }
+        catch (e) { memory[k] = v; }
+      }
+    };
+  }());
+
+  var root = document.documentElement;
+  var toggle = document.getElementById("theme-toggle");
+  var themeIcon = document.getElementById("theme-icon");
+  var themeLabel = document.getElementById("theme-label");
+
+  function applyTheme(theme) {
+    root.setAttribute("data-theme", theme);
+    var dark = theme === "dark";
+    toggle.setAttribute("aria-pressed", dark ? "true" : "false");
+    themeIcon.textContent = dark ? "☀" : "☾";
+    themeLabel.textContent = dark ? "Mod luminos" : "Mod întunecat";
+  }
+
+  var savedTheme = prefs.get(THEME_KEY);
+  var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
+
+  toggle.addEventListener("click", function () {
+    var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    applyTheme(next);
+    prefs.set(THEME_KEY, next);
+  });
+
+  /* ---------------------------------------------------------
+     2. Elemente și stare
+     --------------------------------------------------------- */
+  var form = document.getElementById("form");
+  var summaryBox = document.getElementById("error-summary");
+  var statusLine = document.getElementById("status");
+  var passSlot = document.getElementById("pass-slot");
+  var submitBtn = document.getElementById("submit");
+  var notice = document.getElementById("storage-notice");
+  var birthInput = document.getElementById("data-nasterii");
+  var ageInput = document.getElementById("varsta");
+
+  var db = window.db;
+
+  if (!window.CONFIG_OK) {
+    notice.hidden = false;
+    notice.textContent = window.MESAJ_CONFIG;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Baza de date nu e conectată";
+  }
+
+  /* data nașterii nu poate fi în viitor */
+  (function () {
+    var today = new Date();
+    var pad = function (n) { return String(n).padStart(2, "0"); };
+    birthInput.max = today.getFullYear() + "-" + pad(today.getMonth() + 1) + "-" + pad(today.getDate());
+  }());
+
+  /* ---------------------------------------------------------
+     3. Utilitare de validare
+     --------------------------------------------------------- */
+  var NAME_RE = /^[A-Za-zĂÂÎȘȚăâîșțĂ-ț' -]{3,60}$/;
+  var EMAIL_RE = /^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/;
+
+  function ageFrom(dateString) {
+    var parts = dateString.split("-");
+    if (parts.length !== 3) { return null; }
+    var y = Number(parts[0]), m = Number(parts[1]), d = Number(parts[2]);
+    var today = new Date();
+    var age = today.getFullYear() - y;
+    var monthDiff = (today.getMonth() + 1) - m;
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < d)) { age -= 1; }
+    return age;
+  }
+
+  function isRealDate(dateString) {
+    var parts = dateString.split("-");
+    if (parts.length !== 3) { return false; }
+    var y = Number(parts[0]), m = Number(parts[1]), d = Number(parts[2]);
+    var probe = new Date(y, m - 1, d);
+    return probe.getFullYear() === y && probe.getMonth() === m - 1 && probe.getDate() === d;
+  }
+
+  function setError(fieldId, message) {
+    var input = document.getElementById(fieldId);
+    var box = document.getElementById(fieldId + "-error");
+    if (message) {
+      input.setAttribute("aria-invalid", "true");
+      box.textContent = message;
+      box.hidden = false;
+    } else {
+      input.removeAttribute("aria-invalid");
+      box.textContent = "";
+      box.hidden = true;
+    }
+  }
+
+  function clearAllErrors() {
+    ["nume", "email", "companie", "oras", "data-nasterii", "varsta"].forEach(function (id) {
+      setError(id, "");
+    });
+    summaryBox.hidden = true;
+    summaryBox.innerHTML = "";
+    summaryBox.className = "";
+  }
+
+  function validate(values) {
+    var errors = [];
+
+    if (!values.nume) {
+      errors.push(["nume", "Completează numele și prenumele."]);
+    } else if (!NAME_RE.test(values.nume)) {
+      errors.push(["nume", "Folosește doar litere, spații, cratimă sau apostrof, minimum 3 caractere."]);
+    }
+
+    if (!values.email) {
+      errors.push(["email", "Completează adresa de email."]);
+    } else if (!EMAIL_RE.test(values.email)) {
+      errors.push(["email", "Introdu o adresă validă, de forma nume@companie.ro."]);
+    }
+
+    if (values.companie.length < 2) {
+      errors.push(["companie", "Scrie numele companiei sau al organizației."]);
+    }
+
+    if (values.oras.length < 2) {
+      errors.push(["oras", "Scrie orașul din care participi."]);
+    }
+
+    var computedAge = null;
+    if (!values.dataNasterii) {
+      errors.push(["data-nasterii", "Alege data nașterii."]);
+    } else if (!isRealDate(values.dataNasterii)) {
+      errors.push(["data-nasterii", "Data nu există în calendar. Verifică ziua și luna."]);
+    } else {
+      computedAge = ageFrom(values.dataNasterii);
+      if (computedAge < 0) {
+        errors.push(["data-nasterii", "Data nașterii nu poate fi în viitor."]);
+      } else if (computedAge < 16) {
+        errors.push(["data-nasterii", "Înscrierea e deschisă de la 16 ani."]);
+      } else if (computedAge > 100) {
+        errors.push(["data-nasterii", "Verifică anul nașterii, pare o eroare de tastare."]);
+      }
+    }
+
+    if (values.varsta === "") {
+      errors.push(["varsta", "Completează vârsta."]);
+    } else {
+      var age = Number(values.varsta);
+      if (!Number.isInteger(age)) {
+        errors.push(["varsta", "Scrie vârsta ca număr întreg de ani."]);
+      } else if (age < 16 || age > 100) {
+        errors.push(["varsta", "Vârsta trebuie să fie între 16 și 100 de ani."]);
+      } else if (computedAge !== null && computedAge >= 16 && computedAge <= 100 && age !== computedAge) {
+        errors.push(["varsta", "Din data nașterii reiese " + computedAge + " de ani. Corectează unul dintre cele două câmpuri."]);
+      }
+    }
+
+    return errors;
+  }
+
+  var LABELS = {
+    "nume": "Nume și prenume",
+    "email": "Email",
+    "companie": "Companie",
+    "oras": "Oraș",
+    "data-nasterii": "Data nașterii",
+    "varsta": "Vârsta"
+  };
+
+  function showSummary(errors) {
+    var items = errors.map(function (pair) {
+      return '<li><a href="#' + pair[0] + '">' + LABELS[pair[0]] + " — " + pair[1] + "</a></li>";
+    }).join("");
+    summaryBox.className = "summary";
+    summaryBox.setAttribute("role", "alert");
+    summaryBox.setAttribute("tabindex", "-1");
+    summaryBox.innerHTML =
+      "<h3>" + (errors.length === 1 ? "Un câmp are nevoie de atenție" : errors.length + " câmpuri au nevoie de atenție") +
+      "</h3><ul>" + items + "</ul>";
+    summaryBox.hidden = false;
+    summaryBox.focus();
+  }
+
+  function showServerError(message, fieldId) {
+    if (fieldId) { setError(fieldId, message); }
+    summaryBox.className = "summary";
+    summaryBox.setAttribute("role", "alert");
+    summaryBox.setAttribute("tabindex", "-1");
+    summaryBox.innerHTML = "<h3>Înscrierea nu s-a salvat</h3><p>" + message + "</p>";
+    summaryBox.hidden = false;
+    summaryBox.focus();
+  }
+
+  /* ---------------------------------------------------------
+     4. Vârsta calculată din data nașterii
+     --------------------------------------------------------- */
+  var ageTouched = false;
+  ageInput.addEventListener("input", function () { ageTouched = true; });
+
+  birthInput.addEventListener("change", function () {
+    var value = birthInput.value;
+    if (!value || !isRealDate(value)) { return; }
+    var age = ageFrom(value);
+    if (age === null || age < 0 || age > 120) { return; }
+    if (!ageTouched || ageInput.value === "") {
+      ageInput.value = String(age);
+      setError("varsta", "");
+    }
+  });
+
+  /* ---------------------------------------------------------
+     5. Legitimația de acces
+     --------------------------------------------------------- */
+  function showPass(item) {
+    passSlot.innerHTML = "";
+
+    var wrap = document.createElement("div");
+    wrap.className = "pass";
+    wrap.setAttribute("tabindex", "-1");
+
+    var spine = document.createElement("div");
+    spine.className = "stripes";
+    spine.setAttribute("aria-hidden", "true");
+
+    var body = document.createElement("div");
+    body.className = "pass__body";
+
+    var kicker = document.createElement("p");
+    kicker.className = "pass__kicker";
+    kicker.textContent = "Loc confirmat";
+
+    var name = document.createElement("p");
+    name.className = "pass__name";
+    name.textContent = item.nume;
+
+    var meta = document.createElement("dl");
+    meta.className = "pass__meta";
+    [
+      ["Legitimație", item.cod, true],
+      ["Email", item.email, false],
+      ["Companie", item.companie, false],
+      ["Oraș", item.oras, false],
+      ["Vârsta", item.varsta + " ani", false]
+    ].forEach(function (row) {
+      var cell = document.createElement("div");
+      var dt = document.createElement("dt");
+      dt.textContent = row[0];
+      var dd = document.createElement("dd");
+      dd.textContent = row[1];
+      if (row[2]) { dd.className = "pass__code"; }
+      cell.appendChild(dt);
+      cell.appendChild(dd);
+      meta.appendChild(cell);
+    });
+
+    var note = document.createElement("p");
+    note.className = "hint";
+    note.textContent = "Linkul de acces ajunge pe email cu 24 de ore înainte de webinar. Păstrează codul legitimației.";
+
+    var again = document.createElement("button");
+    again.type = "button";
+    again.className = "btn btn--ghost";
+    again.textContent = "Înscrie altă persoană";
+    again.addEventListener("click", function () {
+      passSlot.innerHTML = "";
+      document.getElementById("nume").focus();
+    });
+
+    body.appendChild(kicker);
+    body.appendChild(name);
+    body.appendChild(meta);
+    body.appendChild(note);
+    body.appendChild(again);
+
+    wrap.appendChild(spine);
+    wrap.appendChild(body);
+    passSlot.appendChild(wrap);
+    wrap.focus();
+  }
+
+  /* ---------------------------------------------------------
+     6. Trimiterea către Supabase
+     --------------------------------------------------------- */
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (!window.CONFIG_OK) { return; }
+
+    clearAllErrors();
+
+    var values = {
+      nume: document.getElementById("nume").value.trim().replace(/\s+/g, " "),
+      email: document.getElementById("email").value.trim().toLowerCase(),
+      companie: document.getElementById("companie").value.trim(),
+      oras: document.getElementById("oras").value.trim(),
+      dataNasterii: birthInput.value,
+      varsta: ageInput.value.trim()
+    };
+
+    var errors = validate(values);
+    if (errors.length) {
+      errors.forEach(function (pair) { setError(pair[0], pair[1]); });
+      showSummary(errors);
+      statusLine.textContent = "";
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Se salvează…";
+    statusLine.textContent = "Se trimite înscrierea…";
+
+    function deblocheaza() {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Confirmă locul";
+    }
+
+    var cerere;
+    try {
+      cerere = db.rpc("inscrie", {
+        p_nume: values.nume,
+        p_email: values.email,
+        p_companie: values.companie,
+        p_oras: values.oras,
+        p_data_nasterii: values.dataNasterii,
+        p_varsta: Number(values.varsta)
+      });
+    } catch (err) {
+      deblocheaza();
+      statusLine.textContent = "";
+      showServerError("Cererea nu a putut fi trimisă: " + err.message);
+      return;
+    }
+
+    Promise.resolve(cerere).then(function (res) {
+      if (res && res.error) {
+        statusLine.textContent = "";
+        showServerError(
+          window.mesajEroare(res.error),
+          res.error.code === "23505" ? "email" : null
+        );
+        return;
+      }
+
+      /* răspunsul poate veni ca obiect sau, în unele versiuni, ca text JSON */
+      var date = res ? res.data : null;
+      if (typeof date === "string") {
+        try { date = JSON.parse(date); } catch (e) { date = null; }
+      }
+
+      form.reset();
+      ageTouched = false;
+
+      if (!date || !date.cod) {
+        /* înscrierea a intrat în bază, dar nu putem citi codul din răspuns */
+        statusLine.textContent = "Înscrierea a fost salvată, dar răspunsul serverului nu a putut fi citit. Verifică lista de înscrieri.";
+        if (window.console) { console.warn("Răspuns neașteptat de la inscrie():", res); }
+        return;
+      }
+
+      /* mesajul de succes înaintea renderării: dacă legitimația cade, confirmarea rămâne */
+      statusLine.textContent = "Înscriere salvată. Legitimația " + date.cod + " a fost emisă.";
+
+      try {
+        showPass(date);
+      } catch (err) {
+        if (window.console) { console.error("Legitimația nu a putut fi afișată:", err); }
+      }
+    }).catch(function (err) {
+      statusLine.textContent = "";
+      showServerError(window.mesajEroare(err));
+      if (window.console) { console.error("Eroare la trimiterea înscrierii:", err); }
+    }).then(deblocheaza, deblocheaza);
+  });
+
+  document.getElementById("reset").addEventListener("click", function () {
+    clearAllErrors();
+    ageTouched = false;
+    statusLine.textContent = "Formularul e gol.";
+    window.setTimeout(function () { document.getElementById("nume").focus(); }, 0);
+  });
+}());
+</script>
+</body>
+</html>

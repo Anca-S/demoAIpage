@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="ro" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Înscrieri — Barça Talks</title>
+<meta name="description" content="Câți participanți s-au înscris la webinarul Barça Talks și lista completă a înscrierilor.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@600;700&family=Public+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS — identice cu inscrieri-webinar.html
+   ============================================================ */
+:root{
+  --blau:#004D98;
+  --grana:#A50044;
+  --gold:#EDBB00;
+
+  --bg:#E9EDF4;
+  --bg-deep:#DDE3EE;
+  --surface:#FFFFFF;
+  --surface-2:#F5F7FB;
+  --ink:#0B1B33;
+  --ink-soft:#51617A;
+  --line:#CFD8E5;
+
+  --btn-ink:#FFFFFF;
+  --accent-text:var(--blau);
+  --danger:#B00020;
+  --ok:#0F6B3F;
+  --focus:#004D98;
+
+  --shadow: 0 1px 0 rgba(11,27,51,.04), 0 10px 30px -12px rgba(11,27,51,.28);
+
+  --r-lg:14px;
+  --r-md:10px;
+  --r-sm:6px;
+
+  --font-display:"Archivo Black","Arial Black",system-ui,sans-serif;
+  --font-cond:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --font-body:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+}
+
+html[data-theme="dark"]{
+  --bg:#070F1C;
+  --bg-deep:#050B15;
+  --surface:#0E1B2E;
+  --surface-2:#132340;
+  --ink:#E8EEF8;
+  --ink-soft:#9DAFC7;
+  --line:#22344F;
+
+  --accent-text:var(--gold);
+  --danger:#FF8FA0;
+  --ok:#5FD39B;
+  --focus:#EDBB00;
+
+  --shadow: 0 1px 0 rgba(0,0,0,.4), 0 18px 40px -18px rgba(0,0,0,.75);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 600px at 100% -10%, color-mix(in srgb, var(--blau) 14%, transparent), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, color-mix(in srgb, var(--grana) 12%, transparent), transparent 60%),
+    var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.55;
+  min-height:100vh;
+}
+
+.shell{
+  width:100%;
+  max-width:64rem;
+  margin-inline:auto;
+  padding:clamp(1rem,3vw,2.5rem) clamp(1rem,4vw,2rem) 4rem;
+}
+
+.skip{
+  position:absolute;
+  left:-9999px;
+  top:0;
+  background:var(--grana);
+  color:#fff;
+  padding:.7rem 1rem;
+  border-radius:0 0 var(--r-sm) 0;
+  z-index:50;
+  font-weight:700;
+}
+.skip:focus{left:0}
+
+.stripes{
+  background-image:repeating-linear-gradient(
+    90deg,
+    var(--grana) 0 12px,
+    var(--blau) 12px 24px
+  );
+}
+
+.sr-only{
+  position:absolute;
+  width:1px;height:1px;
+  padding:0;margin:-1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+  border:0;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible{
+  outline:3px solid var(--focus);
+  outline-offset:2px;
+  border-radius:var(--r-sm);
+}
+
+/* ============================================================
+   BARA DE SUS
+   ============================================================ */
+.topbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem 1rem;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:clamp(1rem,3vw,1.75rem);
+}
+.eyebrow{
+  margin:0;
+  font-family:var(--font-cond);
+  font-size:1rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent-text);
+  font-weight:700;
+}
+.link{
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+  min-height:44px;
+  font-weight:700;
+  color:var(--accent-text);
+  text-decoration-thickness:2px;
+  text-underline-offset:3px;
+}
+.link:hover{color:var(--grana)}
+html[data-theme="dark"] .link:hover{color:var(--gold)}
+
+.theme-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:44px;
+  padding:.55rem .9rem;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:var(--surface-2);
+  color:var(--ink);
+  font:inherit;
+  font-weight:600;
+  font-size:.9rem;
+  cursor:pointer;
+  transition:background .18s ease, border-color .18s ease, transform .18s ease;
+}
+.theme-toggle:hover{border-color:var(--blau)}
+.theme-toggle:active{transform:translateY(1px)}
+.theme-toggle__icon{font-size:1rem;line-height:1}
+
+/* ============================================================
+   SIGNATURE: tabela de scor
+   ============================================================ */
+.scoreboard{
+  position:relative;
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  background:var(--surface);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.scoreboard__band{
+  height:10px;
+  transform-origin:left center;
+  animation:wipe .7s cubic-bezier(.2,.8,.2,1) both;
+}
+.scoreboard__body{
+  display:grid;
+  gap:clamp(1rem,3vw,2.5rem);
+  grid-template-columns:auto 1fr;
+  align-items:center;
+  padding:clamp(1.25rem,4vw,2.25rem);
+}
+@media (max-width:620px){
+  .scoreboard__body{grid-template-columns:1fr}
+}
+
+.tally{display:flex;align-items:baseline;gap:.5rem}
+.tally__count{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(4.5rem,20vw,8rem);
+  line-height:.8;
+  letter-spacing:-.04em;
+  color:var(--grana);
+  font-variant-numeric:tabular-nums;
+}
+html[data-theme="dark"] .tally__count{color:var(--gold)}
+.tally__of{
+  font-family:var(--font-cond);
+  font-weight:700;
+  font-size:clamp(1.1rem,4vw,1.5rem);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--ink-soft);
+}
+
+.tally__label{
+  margin:.6rem 0 0;
+  font-family:var(--font-cond);
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-size:.85rem;
+  font-weight:700;
+  color:var(--ink-soft);
+}
+
+/* bara de ocupare a locurilor */
+.capacity{margin:0}
+.capacity__track{
+  position:relative;
+  height:34px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:var(--surface-2);
+  overflow:hidden;
+}
+.capacity__fill{
+  height:100%;
+  width:0;
+  border-radius:999px 0 0 999px;
+  transition:width .6s cubic-bezier(.2,.8,.2,1);
+}
+.capacity__legend{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:.5rem 1rem;
+  margin:.6rem 0 0;
+  font-family:var(--font-mono);
+  font-size:.8rem;
+  color:var(--ink-soft);
+}
+
+.stats{
+  display:grid;
+  gap:.75rem;
+  grid-template-columns:repeat(auto-fit,minmax(7.5rem,1fr));
+  margin:1.25rem 0 0;
+}
+.stats div{
+  border:1px solid var(--line);
+  border-left:4px solid var(--blau);
+  border-radius:var(--r-md);
+  background:var(--surface-2);
+  padding:.6rem .75rem;
+  min-width:0;
+}
+.stats dt{
+  font-family:var(--font-cond);
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:.7rem;
+  font-weight:700;
+  color:var(--ink-soft);
+}
+.stats dd{
+  margin:0;
+  font-weight:700;
+  font-size:1.1rem;
+  overflow-wrap:anywhere;
+}
+
+/* ============================================================
+   PANOU LISTĂ
+   ============================================================ */
+.panel{
+  margin-top:clamp(1.5rem,4vw,2.5rem);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  background:var(--surface);
+  box-shadow:var(--shadow);
+  padding:clamp(1.1rem,3.5vw,2rem);
+}
+.panel__head{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem 1rem;
+  align-items:baseline;
+  justify-content:space-between;
+  margin-bottom:1.2rem;
+}
+.panel h2{
+  font-family:var(--font-cond);
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  font-size:clamp(1.3rem,4vw,1.6rem);
+  margin:0;
+}
+.counter{
+  margin:.15rem 0 0;
+  font-family:var(--font-mono);
+  font-size:.85rem;
+  color:var(--ink-soft);
+}
+.tools{display:flex;flex-wrap:wrap;gap:.6rem}
+
+.filters{
+  display:grid;
+  gap:.9rem 1rem;
+  grid-template-columns:2fr 1fr;
+  margin-bottom:1.25rem;
+}
+@media (max-width:620px){
+  .filters{grid-template-columns:1fr}
+}
+.field{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.field > label{font-weight:700;font-size:.88rem}
+.field input,
+.field select{
+  width:100%;
+  min-height:46px;
+  padding:.6rem .8rem;
+  font:inherit;
+  font-size:1rem;
+  color:var(--ink);
+  background:var(--surface-2);
+  border:1.5px solid var(--line);
+  border-radius:var(--r-md);
+  transition:border-color .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.field input:hover,
+.field select:hover{border-color:color-mix(in srgb, var(--blau) 55%, var(--line))}
+.field input:focus,
+.field select:focus{
+  outline:none;
+  border-color:var(--focus);
+  box-shadow:0 0 0 4px color-mix(in srgb, var(--focus) 26%, transparent);
+  background:var(--surface);
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5rem;
+  min-height:48px;
+  padding:.75rem 1.35rem;
+  border-radius:var(--r-md);
+  border:1.5px solid transparent;
+  font:inherit;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform .15s ease, background .18s ease, border-color .18s ease, color .18s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn--ghost{
+  background:transparent;
+  color:var(--ink);
+  border-color:var(--line);
+}
+.btn--ghost:hover{border-color:var(--blau);color:var(--accent-text)}
+.btn--danger{
+  background:transparent;
+  color:var(--danger);
+  border-color:color-mix(in srgb, var(--danger) 45%, transparent);
+}
+.btn--danger:hover{background:color-mix(in srgb, var(--danger) 12%, transparent)}
+.btn--tiny{
+  min-height:36px;
+  padding:.35rem .7rem;
+  font-size:.82rem;
+  border-radius:var(--r-sm);
+}
+
+.entries{list-style:none;margin:0;padding:0;display:grid;gap:.75rem}
+.entry{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:.75rem 1rem;
+  align-items:start;
+  padding:.9rem 1rem;
+  border:1px solid var(--line);
+  border-left:5px solid var(--grana);
+  border-radius:var(--r-md);
+  background:var(--surface-2);
+}
+.entry:nth-child(even){border-left-color:var(--blau)}
+.entry__name{font-weight:700;margin:0 0 .15rem;overflow-wrap:anywhere}
+.entry__line{
+  margin:0;
+  font-size:.88rem;
+  color:var(--ink-soft);
+  overflow-wrap:anywhere;
+}
+.entry__code{
+  font-family:var(--font-mono);
+  font-size:.78rem;
+  color:var(--accent-text);
+  display:block;
+  margin-top:.3rem;
+}
+.empty{
+  margin:0;
+  padding:1.75rem 1.25rem;
+  border:1px dashed var(--line);
+  border-radius:var(--r-md);
+  text-align:center;
+  color:var(--ink-soft);
+}
+.empty a{color:var(--accent-text);font-weight:700}
+
+.status{
+  margin-top:1rem;
+  font-size:.9rem;
+  font-weight:600;
+  color:var(--ok);
+  min-height:1.4em;
+}
+.notice p{margin:0 0 .75rem}
+.notice{
+  margin-top:1.25rem;
+  padding:.85rem 1rem;
+  border-radius:var(--r-md);
+  border:1px dashed var(--line);
+  background:var(--surface);
+  color:var(--ink-soft);
+  font-size:.88rem;
+}
+
+footer{
+  margin-top:2.5rem;
+  text-align:center;
+  color:var(--ink-soft);
+  font-size:.82rem;
+}
+footer p{margin:.4rem 0}
+
+@keyframes wipe{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+@media print{
+  body{background:#fff}
+  .theme-toggle,.skip,.tools,.filters,.notice{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#lista">Sari la lista participanților</a>
+
+<div class="shell">
+
+  <div class="topbar">
+    <p class="eyebrow">Barça Talks · Ediția 4</p>
+    <a class="link" href="inscrieri-webinar.html"><span aria-hidden="true">←</span> Formular de înscriere</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+      <span class="theme-toggle__icon" id="theme-icon" aria-hidden="true">☾</span>
+      <span id="theme-label">Mod întunecat</span>
+    </button>
+  </div>
+
+  <main>
+  <!-- ===================== TABELA ===================== -->
+  <section class="scoreboard" aria-labelledby="tally-title">
+    <div class="scoreboard__band stripes" aria-hidden="true"></div>
+    <div class="scoreboard__body">
+      <div>
+        <h1 class="sr-only" id="tally-title">Câți s-au înscris la webinar</h1>
+        <p class="tally">
+          <span class="tally__count" id="tally-count">0</span>
+          <span class="tally__of">/ 120</span>
+        </p>
+        <p class="tally__label">Locuri ocupate</p>
+      </div>
+
+      <div>
+        <p class="capacity">
+          <span class="capacity__track">
+            <span class="capacity__fill stripes" id="capacity-fill"></span>
+          </span>
+        </p>
+        <p class="capacity__legend">
+          <span id="capacity-free">120 locuri libere</span>
+          <span id="capacity-pct">0% ocupat</span>
+        </p>
+
+        <dl class="stats">
+          <div>
+            <dt>Orașe</dt>
+            <dd id="stat-orase">—</dd>
+          </div>
+          <div>
+            <dt>Companii</dt>
+            <dd id="stat-companii">—</dd>
+          </div>
+          <div>
+            <dt>Vârstă medie</dt>
+            <dd id="stat-varsta">—</dd>
+          </div>
+          <div>
+            <dt>Ultima înscriere</dt>
+            <dd id="stat-ultima">—</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LISTA ===================== -->
+  <section class="panel" id="lista" aria-labelledby="lista-title">
+    <div class="panel__head">
+      <div>
+        <h2 id="lista-title">Participanți</h2>
+        <p class="counter" id="counter">0 înscrieri</p>
+      </div>
+      <div class="tools">
+        <button class="btn btn--ghost btn--tiny" type="button" id="refresh">Actualizează</button>
+        <button class="btn btn--ghost btn--tiny" type="button" id="export">Descarcă CSV</button>
+      </div>
+    </div>
+
+    <div class="filters">
+      <div class="field">
+        <label for="search">Caută participant</label>
+        <input id="search" type="search" inputmode="search" spellcheck="false"
+               placeholder="Nume, email, companie sau oraș" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="sort">Ordonează</label>
+        <select id="sort">
+          <option value="recent">Cele mai recente</option>
+          <option value="vechi">Cele mai vechi</option>
+          <option value="nume">Nume, A → Z</option>
+          <option value="oras">Oraș, A → Z</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="notice" id="import-box" hidden>
+      <p>Am găsit înscrieri salvate în stocarea locală a acestui browser, din versiunea anterioară.</p>
+      <button class="btn btn--ghost btn--tiny" type="button" id="import">Importă înscrierile locale</button>
+    </div>
+
+    <ul class="entries" id="entries"></ul>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+    <p class="notice" id="storage-notice" hidden></p>
+  </section>
+  </main>
+
+  <footer>
+    <p>Lista publică nu include emailuri și date de naștere. Datele complete sunt vizibile doar în dashboard-ul Supabase al organizatorilor.</p>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ----------------------------------------------------------------------------
+   Conectare Supabase. Cheia publishable e făcută să stea în cod client: ajunge
+   oricum în browserul fiecărui vizitator, iar tot ce poate face e limitat de
+   politicile din supabase.sql. Cheia "secret" / "service_role" și parola din
+   connection string NU au ce căuta aici, niciodată.
+   -------------------------------------------------------------------------- */
+window.APP_CONFIG = {
+  SUPABASE_URL: "https://zvwuwpljqebuyoyvdziw.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_ZnqGV8Hs0LH_32EY5KJDIw_BvAGxCD2",
+  LOCURI: 120
+};
+
+window.CONFIG_OK = !!(window.supabase && typeof window.supabase.createClient === "function");
+
+window.db = window.CONFIG_OK
+  ? window.supabase.createClient(
+      window.APP_CONFIG.SUPABASE_URL,
+      window.APP_CONFIG.SUPABASE_ANON_KEY,
+      { auth: { persistSession: false } }
+    )
+  : null;
+
+window.MESAJ_CONFIG = "Biblioteca supabase-js nu s-a putut încărca de pe CDN, deci pagina nu poate ajunge la baza de date. Verifică conexiunea sau un blocant de reclame.";
+
+window.mesajEroare = function (error) {
+  if (!error) { return "A apărut o eroare necunoscută."; }
+  if (error.message && /Failed to fetch|NetworkError|load failed/i.test(error.message)) {
+    return "Nu am putut ajunge la baza de date. Verifică conexiunea la internet și dacă proiectul Supabase e activ.";
+  }
+  if (error.code === "42883" || (error.message || "").indexOf("does not exist") !== -1) {
+    return "Funcțiile din baza de date lipsesc. Rulează supabase.sql în SQL Editor.";
+  }
+  return error.message || "Baza de date a refuzat operațiunea.";
+};
+</script>
+<script>
+(function () {
+  "use strict";
+
+  var LOCURI = (window.APP_CONFIG && window.APP_CONFIG.LOCURI) || 120;
+  var THEME_KEY = "barca-talks:tema:v1";
+  var LOCAL_KEY = "barca-talks:inscrieri:v1";
+  var db = window.db;
+
+  /* ---------------------------------------------------------
+     1. Preferința de temă
+     --------------------------------------------------------- */
+  var prefs = (function () {
+    var ok = false;
+    try {
+      window.localStorage.setItem("__probe__", "1");
+      window.localStorage.removeItem("__probe__");
+      ok = true;
+    } catch (e) { ok = false; }
+    var memory = {};
+    return {
+      disponibil: ok,
+      get: function (k) {
+        try { return ok ? window.localStorage.getItem(k) : (k in memory ? memory[k] : null); }
+        catch (e) { return null; }
+      },
+      set: function (k, v) {
+        try { if (ok) { window.localStorage.setItem(k, v); } else { memory[k] = v; } }
+        catch (e) { memory[k] = v; }
+      },
+      remove: function (k) {
+        try { if (ok) { window.localStorage.removeItem(k); } else { delete memory[k]; } }
+        catch (e) { delete memory[k]; }
+      }
+    };
+  }());
+
+  var root = document.documentElement;
+  var toggle = document.getElementById("theme-toggle");
+  var themeIcon = document.getElementById("theme-icon");
+  var themeLabel = document.getElementById("theme-label");
+
+  function applyTheme(theme) {
+    root.setAttribute("data-theme", theme);
+    var dark = theme === "dark";
+    toggle.setAttribute("aria-pressed", dark ? "true" : "false");
+    themeIcon.textContent = dark ? "☀" : "☾";
+    themeLabel.textContent = dark ? "Mod luminos" : "Mod întunecat";
+  }
+
+  var savedTheme = prefs.get(THEME_KEY);
+  var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
+
+  toggle.addEventListener("click", function () {
+    var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    applyTheme(next);
+    prefs.set(THEME_KEY, next);
+  });
+
+  /* ---------------------------------------------------------
+     2. Elemente
+     --------------------------------------------------------- */
+  var entriesList = document.getElementById("entries");
+  var counter = document.getElementById("counter");
+  var statusLine = document.getElementById("status");
+  var notice = document.getElementById("storage-notice");
+  var searchInput = document.getElementById("search");
+  var sortSelect = document.getElementById("sort");
+  var refreshBtn = document.getElementById("refresh");
+  var exportBtn = document.getElementById("export");
+  var importBox = document.getElementById("import-box");
+  var importBtn = document.getElementById("import");
+
+  var participanti = [];
+
+  /* ---------------------------------------------------------
+     3. Utilitare
+     --------------------------------------------------------- */
+  function formatMoment(iso) {
+    if (!iso) { return "—"; }
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) { return "—"; }
+    var pad = function (n) { return String(n).padStart(2, "0"); };
+    return pad(d.getDate()) + "." + pad(d.getMonth() + 1) + "." + d.getFullYear() +
+           ", " + pad(d.getHours()) + ":" + pad(d.getMinutes());
+  }
+
+  function plural(n, one, few) {
+    return n === 1 ? "1 " + one : n + " " + few;
+  }
+
+  var roCompare = (function () {
+    try {
+      var c = new Intl.Collator("ro", { sensitivity: "base" });
+      return function (a, b) { return c.compare(a || "", b || ""); };
+    } catch (e) {
+      return function (a, b) { return a < b ? -1 : (a > b ? 1 : 0); };
+    }
+  }());
+
+  /* ---------------------------------------------------------
+     4. Tabela de scor
+     --------------------------------------------------------- */
+  function renderScoreboard(stats) {
+    var total = Number(stats.total) || 0;
+    var pct = Math.min(100, Math.round((total / LOCURI) * 100));
+
+    document.getElementById("tally-count").textContent = total;
+    document.getElementById("capacity-fill").style.width = pct + "%";
+    document.getElementById("capacity-pct").textContent = pct + "% ocupat";
+
+    var free = Math.max(0, LOCURI - total);
+    document.getElementById("capacity-free").textContent =
+      free === 0 ? "Nu mai sunt locuri" : plural(free, "loc liber", "locuri libere");
+
+    document.getElementById("stat-orase").textContent = total ? stats.orase : "—";
+    document.getElementById("stat-companii").textContent = total ? stats.companii : "—";
+    document.getElementById("stat-varsta").textContent = total ? stats.varsta_medie + " ani" : "—";
+    document.getElementById("stat-ultima").textContent = total ? formatMoment(stats.ultima_inscriere) : "—";
+  }
+
+  /* ---------------------------------------------------------
+     5. Lista publică
+     --------------------------------------------------------- */
+  function filterAndSort(list) {
+    var query = searchInput.value.trim().toLowerCase();
+    var result = list.filter(function (item) {
+      if (!query) { return true; }
+      return [item.nume, item.companie, item.oras, item.cod]
+        .join(" ").toLowerCase().indexOf(query) !== -1;
+    });
+
+    var mode = sortSelect.value;
+    if (mode === "vechi") {
+      result.reverse();
+    } else if (mode === "nume") {
+      result.sort(function (a, b) { return roCompare(a.nume, b.nume); });
+    } else if (mode === "oras") {
+      result.sort(function (a, b) {
+        return roCompare(a.oras, b.oras) || roCompare(a.nume, b.nume);
+      });
+    }
+    return result;
+  }
+
+  function buildEntry(item) {
+    var li = document.createElement("li");
+    li.className = "entry";
+
+    var info = document.createElement("div");
+
+    var name = document.createElement("p");
+    name.className = "entry__name";
+    name.textContent = item.nume;
+
+    var line1 = document.createElement("p");
+    line1.className = "entry__line";
+    line1.textContent = item.companie + " · " + item.oras;
+
+    var line2 = document.createElement("p");
+    line2.className = "entry__line";
+    line2.textContent = item.varsta + " de ani";
+
+    var code = document.createElement("span");
+    code.className = "entry__code";
+    code.textContent = item.cod + " · înscris(ă) " + formatMoment(item.creat_la);
+
+    info.appendChild(name);
+    info.appendChild(line1);
+    info.appendChild(line2);
+    info.appendChild(code);
+
+    li.appendChild(info);
+    return li;
+  }
+
+  function showEmpty(message, withLink) {
+    var empty = document.createElement("p");
+    empty.className = "empty";
+    if (withLink) {
+      empty.innerHTML = message + ' <a href="inscrieri-webinar.html">Deschide formularul de înscriere</a>.';
+    } else {
+      empty.textContent = message;
+    }
+    entriesList.replaceWith(empty);
+    empty.id = "empty-state";
+  }
+
+  function restoreList() {
+    var placeholder = document.getElementById("empty-state");
+    if (placeholder) { placeholder.replaceWith(entriesList); }
+  }
+
+  function renderList() {
+    var visible = filterAndSort(participanti.slice());
+
+    counter.textContent = visible.length === participanti.length
+      ? plural(participanti.length, "participant", "participanți")
+      : visible.length + " din " + plural(participanti.length, "participant", "participanți") + " afișați";
+
+    restoreList();
+    entriesList.innerHTML = "";
+
+    if (!participanti.length) {
+      showEmpty("Nicio înscriere deocamdată.", true);
+      return;
+    }
+    if (!visible.length) {
+      showEmpty("Nimeni nu corespunde căutării „" + searchInput.value.trim() + "”.", false);
+      return;
+    }
+
+    visible.forEach(function (item) {
+      entriesList.appendChild(buildEntry(item));
+    });
+  }
+
+  searchInput.addEventListener("input", renderList);
+  sortSelect.addEventListener("change", renderList);
+
+  /* ---------------------------------------------------------
+     6. Încărcarea datelor
+     --------------------------------------------------------- */
+  function load(silent) {
+    if (!window.CONFIG_OK) { return; }
+    if (!silent) { statusLine.textContent = "Se încarcă…"; }
+
+    Promise.all([
+      db.rpc("statistici_inscrieri"),
+      db.rpc("lista_publica")
+    ]).then(function (results) {
+      var stats = results[0];
+      var lista = results[1];
+
+      if (stats.error) {
+        statusLine.textContent = "";
+        notice.hidden = false;
+        notice.textContent = window.mesajEroare(stats.error);
+        return;
+      }
+
+      notice.hidden = true;
+      renderScoreboard(stats.data || { total: 0 });
+
+      if (lista.error) {
+        statusLine.textContent = window.mesajEroare(lista.error);
+        return;
+      }
+
+      participanti = lista.data || [];
+      renderList();
+      statusLine.textContent = silent ? "" : "Actualizat la " + formatMoment(new Date().toISOString()) + ".";
+    });
+  }
+
+  refreshBtn.addEventListener("click", function () { load(false); });
+
+  /* reîmprospătare periodică, doar cât timp tabul e vizibil */
+  window.setInterval(function () {
+    if (!document.hidden) { load(true); }
+  }, 30000);
+
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) { load(true); }
+  });
+
+  /* ---------------------------------------------------------
+     7. Export CSV — doar câmpurile publice
+     --------------------------------------------------------- */
+  exportBtn.addEventListener("click", function () {
+    if (!participanti.length) {
+      statusLine.textContent = "Nu există participanți de exportat.";
+      return;
+    }
+    var header = ["legitimatie", "nume_public", "companie", "oras", "varsta", "inscris_la"];
+    var esc = function (v) { return '"' + String(v === null || v === undefined ? "" : v).replace(/"/g, '""') + '"'; };
+    var rows = participanti.map(function (item) {
+      return [item.cod, item.nume, item.companie, item.oras, item.varsta, item.creat_la].map(esc).join(",");
+    });
+    var csv = "\uFEFF" + header.join(",") + "\r\n" + rows.join("\r\n");
+    var blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement("a");
+    link.href = url;
+    link.download = "participanti-webinar.csv";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    statusLine.textContent = participanti.length + " participanți exportați. Emailurile nu sunt incluse — le iei din dashboard-ul Supabase.";
+  });
+
+  /* ---------------------------------------------------------
+     8. Import din localStorage-ul acestui browser
+     --------------------------------------------------------- */
+  function citesteLocal() {
+    var raw = prefs.get(LOCAL_KEY);
+    if (!raw) { return []; }
+    try {
+      var parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) { return []; }
+  }
+
+  function pregatesteImport() {
+    var local = citesteLocal();
+    if (!local.length || !window.CONFIG_OK) { return; }
+    importBox.hidden = false;
+    importBtn.textContent = "Importă " + plural(local.length, "înscriere", "înscrieri") + " din acest browser";
+  }
+
+  importBtn.addEventListener("click", function () {
+    var local = citesteLocal();
+    if (!local.length) { return; }
+
+    importBtn.disabled = true;
+    importBtn.textContent = "Se importă…";
+
+    var adaugate = 0, duplicate = 0, eșuate = 0;
+
+    var pas = function (index) {
+      if (index >= local.length) {
+        importBtn.disabled = false;
+        var raport = plural(adaugate, "înscriere adăugată", "înscrieri adăugate");
+        if (duplicate) { raport += ", " + duplicate + " deja existente"; }
+        if (eșuate) { raport += ", " + eșuate + " respinse de validare"; }
+        statusLine.textContent = raport + ".";
+
+        if (adaugate + duplicate === local.length) {
+          importBox.hidden = true;
+          if (window.confirm("Import încheiat. Ștergi copia locală din acest browser?")) {
+            prefs.remove(LOCAL_KEY);
+          }
+        } else {
+          importBtn.textContent = "Reîncearcă importul";
+        }
+        load(false);
+        return;
+      }
+
+      var row = local[index];
+      db.rpc("inscrie", {
+        p_nume: row.nume,
+        p_email: row.email,
+        p_companie: row.companie,
+        p_oras: row.oras,
+        p_data_nasterii: row.dataNasterii,
+        p_varsta: null
+      }).then(function (res) {
+        if (!res.error) { adaugate += 1; }
+        else if (res.error.code === "23505") { duplicate += 1; }
+        else { eșuate += 1; }
+        pas(index + 1);
+      });
+    };
+
+    pas(0);
+  });
+
+  /* ---------------------------------------------------------
+     9. Pornire
+     --------------------------------------------------------- */
+  if (!window.CONFIG_OK) {
+    notice.hidden = false;
+    notice.textContent = window.MESAJ_CONFIG;
+    refreshBtn.disabled = true;
+    exportBtn.disabled = true;
+    showEmpty("Lista se încarcă din baza de date, care nu e încă configurată.", false);
+  } else {
+    pregatesteImport();
+    load(false);
+  }
+}());
+</script>
+</body>
+</html>
